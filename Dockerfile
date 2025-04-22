@@ -24,5 +24,5 @@ RUN chown -R www-data:www-data /var/www/html \
 # Configurar el directorio de trabajo
 WORKDIR /var/www/html
 
-# Comando de inicio (NO usar cd aquí)
+# Comando de inicio (formato correcto)
 CMD ["apache2-foreground"]
