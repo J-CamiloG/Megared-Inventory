@@ -18,5 +18,5 @@ COPY src/ /var/www/html/
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Comando para iniciar Apache
+# Comando para iniciar Apache (usando exec form para evitar problemas con shell)
 CMD ["apache2-foreground"]
