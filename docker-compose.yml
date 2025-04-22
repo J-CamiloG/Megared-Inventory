@@ -3,15 +3,16 @@ services:
     image: php:8.1-apache
     container_name: megared_web
     ports:
-      - "8080:80"
+      - "${WEB_PORT}:80"
     volumes:
       - ./src:/var/www/html
     environment:
-      - DB_HOST=b1fwlu040o0pjurosjp8-mysql.services.clever-cloud.com
-      - DB_NAME=b1fwlu040o0pjurosjp8
-      - DB_USER=ulhihvey1k4zyr7c
-      - DB_PASS=EGTPk59A6nOPISub1yC4
-      - DB_PORT=3306
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_PORT=${DB_PORT}
+      - APP_URL=${APP_URL}
     command: >
       bash -c "apt-get update && apt-get install -y libpng-dev zlib1g-dev libzip-dev && 
       docker-php-ext-install pdo pdo_mysql mysqli gd zip && 
@@ -22,9 +23,9 @@ services:
     image: phpmyadmin/phpmyadmin
     container_name: megared_phpmyadmin
     ports:
-      - "8081:80"
+      - "${PHPMYADMIN_PORT}:80"
     environment:
-      - PMA_HOST=b1fwlu040o0pjurosjp8-mysql.services.clever-cloud.com
-      - PMA_PORT=3306
-      - PMA_USER=ulhihvey1k4zyr7c
-      - PMA_PASSWORD=EGTPk59A6nOPISub1yC4
+      - PMA_HOST=${DB_HOST}
+      - PMA_PORT=${DB_PORT}
+      - PMA_USER=${DB_USER}
+      - PMA_PASSWORD=${DB_PASS}
