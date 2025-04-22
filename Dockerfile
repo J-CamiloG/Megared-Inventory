@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y \
 ENV PORT=80
 RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
-# Copiar archivos de la aplicación
-COPY . /var/www/html/
+# Copiar solo los archivos de src/ a /var/www/html/
+COPY src/ /var/www/html/
 
 # Establecer permisos adecuados
 RUN chown -R www-data:www-data /var/www/html \
@@ -24,5 +24,5 @@ RUN chown -R www-data:www-data /var/www/html \
 # Configurar el directorio de trabajo
 WORKDIR /var/www/html
 
-# Comando de inicio (formato correcto)
+# Comando de inicio
 CMD ["apache2-foreground"]
