@@ -107,7 +107,8 @@ class AuthController extends Controller {
         
         $this->userModel->createResetToken($user['id'], $token, $expiresAt);
         
-        $resetLink = APP_URL . '/reset-password?token=' . $token;
+        $baseUrl = 'https://web-production-4da56.up.railway.app';
+        $resetLink = $baseUrl . '/reset-password?token=' . $token;
         
         $this->view('auth/forgot-password-success', [
             'resetLink' => $resetLink
